@@ -110,6 +110,21 @@ argon2 = ["argon2-cffi (>=19.1.0)"]
 bcrypt = ["bcrypt"]
 
 [[package]]
+name = "django-filter"
+version = "25.1"
+description = "Django-filter is a reusable Django application for allowing users to filter querysets dynamically."
+optional = false
+python-versions = ">=3.9"
+groups = ["main"]
+files = [
+    {file = "django_filter-25.1-py3-none-any.whl", hash = "sha256:4fa48677cf5857b9b1347fed23e355ea792464e0fe07244d1fdfb8a806215b80"},
+    {file = "django_filter-25.1.tar.gz", hash = "sha256:1ec9eef48fa8da1c0ac9b411744b16c3f4c31176c867886e4c48da369c407153"},
+]
+
+[package.dependencies]
+Django = ">=4.2"
+
+[[package]]
 name = "django-phonenumber-field"
 version = "8.1.0"
 description = "An international phone number field for django models."
@@ -512,18 +527,7 @@ files = [
     {file = "tzdata-2025.2.tar.gz", hash = "sha256:b60a638fcc0daffadf82fe0f57e53d06bdec2f36c4df66280ae79bce6bd6f2b9"},
 ]
 
-[[package]]
-name = "users"
-version = "1.0.dev0"
-description = ""
-optional = false
-python-versions = "*"
-groups = ["main"]
-files = [
-    {file = "users-1.0.dev0.tar.gz", hash = "sha256:4cc690d595762fd510a84f3a1547e0d100389324da7d35ea234143525ea97d37"},
-]
-
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.13"
-content-hash = "a545731717e68034b68b026b705d323e9152796b8449095d3f7dcc5a516c7d31"
+content-hash = "2fbf77acca9fcaa794a942caf136b526d30cada6659e39267fdc265307873c3f"

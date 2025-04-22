@@ -1,0 +1,30 @@
+[
+{
+    "model": "users.payment",
+    "pk": 1,
+    "fields": {
+        "user": 1,
+        "payment_date": "2023-01-18T13:41:01.081Z",
+        "payment_amount": 800000,
+        "payment_method": "Перевод",
+        "payment_course": [
+            2
+        ],
+        "payment_lesson": []
+    }
+},
+{
+    "model": "users.payment",
+    "pk": 2,
+    "fields": {
+        "user": 1,
+        "payment_date": "2025-06-18T18:55:19.210Z",
+        "payment_amount": 90000,
+        "payment_method": "Наличные",
+        "payment_course": [
+            3
+        ],
+        "payment_lesson": []
+    }
+}
+]

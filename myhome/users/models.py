@@ -32,21 +32,21 @@ class Payment(models.Model):
         (TRANSFER, 'Перевод'),
     ]
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь', related_name='payment')
-    payment_date = models.DateTimeField(auto_now_add=True, verbose_name='Дата оплаты')
-    payment_course = models.ManyToManyField(
-        Course, verbose_name='Оплаченный курс', related_name='payment', blank=True, null=True
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь', related_name='payments')
+    date = models.DateTimeField(auto_now_add=True, verbose_name='Дата оплаты')
+    course = models.ManyToManyField(
+        Course, verbose_name='Оплаченный курс', related_name='payments', blank=True, null=True
     )
     payment_lesson = models.ManyToManyField(
-        Lesson, verbose_name='Оплаченный урок', related_name='payment', blank=True, null=True
+        Lesson, verbose_name='Оплаченный урок', related_name='payments', blank=True, null=True
     )
-    payment_amount = models.PositiveIntegerField(verbose_name='Сумма оплаты')
-    payment_method = models.CharField(max_length=10, choices=method, verbose_name='Способ оплаты')
+    amount = models.PositiveIntegerField(verbose_name='Сумма оплаты')
+    method = models.CharField(max_length=10, choices=method, verbose_name='Способ оплаты')
 
     class Meta:
         verbose_name = 'Платёж'
         verbose_name_plural = 'Платежи'
-        ordering = ['payment_date']
+        ordering = ['date']
 
     def __str__(self):
-        return f'{self.user} - {self.payment_date}'
+        return f'{self.user} - {self.date}'
