@@ -37,7 +37,7 @@ class Payment(models.Model):
     course = models.ManyToManyField(
         Course, verbose_name='Оплаченный курс', related_name='payments', blank=True, null=True
     )
-    payment_lesson = models.ManyToManyField(
+    lesson = models.ManyToManyField(
         Lesson, verbose_name='Оплаченный урок', related_name='payments', blank=True, null=True
     )
     amount = models.PositiveIntegerField(verbose_name='Сумма оплаты')
