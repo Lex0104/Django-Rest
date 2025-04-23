@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'rest_framework',
     'users',
-    'materials'
+    'materials',
     'django_filters',
 ]
 
