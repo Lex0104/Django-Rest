@@ -54,4 +54,4 @@ class Payment(models.Model):
 
 class SubscriptionForUpdate(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Подписка', related_name='subscription_for_update')
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name='Курс', related_name='subscription_for_update')
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name='Курс', related_name='subscription_for_update')3
