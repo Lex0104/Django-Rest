@@ -1,0 +1,30 @@
+[
+{
+    "model": "users.payment",
+    "pk": 1,
+    "fields": {
+        "user": 1,
+        "date": "2023-01-18T13:41:01.081Z",
+        "amount": 800000,
+        "method": "Перевод",
+        "course": [
+            2
+        ],
+        "lessons": []
+    }
+},
+{
+    "model": "users.payment",
+    "pk": 2,
+    "fields": {
+        "user": 1,
+        "date": "2025-06-18T18:55:19.210Z",
+        "amount": 90000,
+        "method": "Наличные",
+        "course": [
+            3
+        ],
+        "lessons": []
+    }
+}
+]
