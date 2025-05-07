@@ -7,6 +7,7 @@ class Course(models.Model):
     description = models.TextField(verbose_name='Описание курса')
     owner = models.ForeignKey ( 'users.User', on_delete=models.SET_NULL, verbose_name='Владелец', related_name='course',
                                 null=True, blank=True )
+    price = models.PositiveIntegerField ( verbose_name='Цена курса', blank=True, null=True )
 
     class Meta:
         verbose_name = 'Курс'
@@ -32,9 +33,7 @@ class Lesson(models.Model):
     link_to_video = models.URLField(verbose_name='Ссылка на видео')
     owner = models.ForeignKey ( 'users.User', on_delete=models.SET_NULL, verbose_name='Владелец', related_name='lesson',
                                 null=True, blank=True )
-
-    def __str__(self):
-        return self.title
+    price = models.PositiveIntegerField ( verbose_name='Цена урока', blank=True, null=True )
 
     class Meta:
         verbose_name = 'Урок'

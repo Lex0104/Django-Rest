@@ -26,15 +26,15 @@ class Migration(migrations.Migration):
                     ),
                 ),
                 (
-                    "payment_date",
+                    "date",
                     models.DateTimeField(auto_now_add=True, verbose_name="Дата оплаты"),
                 ),
                 (
-                    "payment_amount",
+                    "amount",
                     models.PositiveIntegerField(verbose_name="Сумма оплаты"),
                 ),
                 (
-                    "payment_method",
+                    "method",
                     models.CharField(
                         choices=[("Наличные", "Наличные"), ("Перевод", "Перевод")],
                         max_length=10,
@@ -42,7 +42,7 @@ class Migration(migrations.Migration):
                     ),
                 ),
                 (
-                    "payment_course",
+                    "course",
                     models.ManyToManyField(
                         blank=True,
                         null=True,
@@ -52,7 +52,7 @@ class Migration(migrations.Migration):
                     ),
                 ),
                 (
-                    "payment_lesson",
+                    "lesson",
                     models.ManyToManyField(
                         blank=True,
                         null=True,
@@ -74,7 +74,7 @@ class Migration(migrations.Migration):
             options={
                 "verbose_name": "Платёж",
                 "verbose_name_plural": "Платежи",
-                "ordering": ["payment_date"],
+                "ordering": ["date"],
             },
         ),
     ]

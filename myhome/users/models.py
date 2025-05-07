@@ -33,25 +33,27 @@ class Payment(models.Model):
     ]
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь', related_name='payment')
-    payment_date = models.DateTimeField(auto_now_add=True, verbose_name='Дата оплаты')
-    payment_course = models.ManyToManyField(
+    date = models.DateTimeField(auto_now_add=True, verbose_name='Дата оплаты')
+    course = models.ManyToManyField(
         Course, verbose_name='Оплаченный курс', related_name='payment', blank=True, null=True
     )
-    payment_lesson = models.ManyToManyField(
+    lesson = models.ManyToManyField(
         Lesson, verbose_name='Оплаченный урок', related_name='payment', blank=True, null=True
     )
-    payment_amount = models.PositiveIntegerField(verbose_name='Сумма оплаты')
-    payment_method = models.CharField(max_length=10, choices=method, verbose_name='Способ оплаты')
+    amount = models.PositiveIntegerField(verbose_name='Сумма оплаты')
+    method = models.CharField(max_length=10, choices=method, verbose_name='Способ оплаты')
+    session_id = models.CharField(max_length=255, verbose_name='ID сессии', blank=True, null=True)
+    url = models.URLField(max_length=400, verbose_name='Ссылка на оплату', blank=True, null=True)
 
     class Meta:
         verbose_name = 'Платёж'
         verbose_name_plural = 'Платежи'
-        ordering = ['payment_date']
+        ordering = ['date']
 
     def __str__(self):
-        return f'{self.user} - {self.payment_date}'
+        return f'{self.user} - {self.date}'
 
 
 class SubscriptionForUpdate(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Подписка', related_name='subscription_for_update')
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name='Курс', related_name='subscription_for_update')3
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name='Курс', related_name='subscription_for_update')

@@ -12,6 +12,11 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os
 from pathlib import Path
 
+from environs import Env
+
+env = Env()
+env.read_env()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -23,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-qwk!9mtw71un&_6fxg4lgu5d#*x_&k%rf-sib3di@^jag7#vt*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DDEBUG = env.bool("DEBUG", default=False)
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
@@ -42,6 +47,7 @@ INSTALLED_APPS = [
     'users',
     'materials',
     'django_filters',
+    'drf_yasg'
 ]
 
 MIDDLEWARE = [
@@ -126,6 +132,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
@@ -141,3 +150,6 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ],
 }
+
+
+STRIPE_API_KEY = env.str('STRIPE_SECRET_KEY')

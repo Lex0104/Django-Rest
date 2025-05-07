@@ -19,6 +19,13 @@ class PaymentSerializer(ModelSerializer):
     class Meta:
         model = Payment
         fields = '__all__'
+        extra_kwargs = {
+            'user': {'read_only': True},
+            'amount': {'read_only': True},
+            'course': {'read_only': True},
+            'session_id': {'read_only': True},
+            'url': {'read_only': True},
+        }
 
 
 class UserDetailSerializer(ModelSerializer):
