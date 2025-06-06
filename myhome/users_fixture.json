@@ -1,0 +1,22 @@
+[
+{
+    "model": "users.user",
+    "pk": 1,
+    "fields": {
+        "password": "",
+        "last_login": null,
+        "is_superuser": false,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-04-18T15:25:17.069Z",
+        "email": "example@example.com",
+        "phone_number": null,
+        "city": "Moscow",
+        "avatar": "",
+        "groups": [],
+        "user_permissions": []
+    }
+}
+]
