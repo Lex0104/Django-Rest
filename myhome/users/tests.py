@@ -46,7 +46,7 @@ class UserTestCase(APITestCase):
 
     def setUp(self):
         self.password = 'testpassword'
-        self.user = User.objects.create(email='1@mail.com')
+        self.user = User.objects.create(email='fortest@mail.com')
         self.user.set_password(self.password)
         self.user.save()
         self.client.force_authenticate(user=self.user)
@@ -140,27 +140,28 @@ class UserTestCase(APITestCase):
 class PaymentTestCase(APITestCase):
 
     def setUp(self):
-        self.user = User.objects.create(email='1@mail.com')
+        self.user = User.objects.create(email='fortest@mail.com')
+        self.course = Course.objects.create(title_course='Test', description='Test', price=200, owner=self.user)
         self.payment = Payment.objects.create(user=self.user, payment_amount=100, payment_method='Наличные')
         self.client.force_authenticate(user=self.user)
 
     def test_payment_retrieve(self):
-        url = reverse('users:detail', args=(self.payment.pk,))
+        url = reverse('users:payment_detail', args=(self.payment.pk,))
         response = self.client.get(url)
         data = response.json()
         self.assertEqual(
             response.status_code, status.HTTP_200_OK
         )
         self.assertEqual(
-            data.get('amount'), self.payment.payment_amount
+            data.get('payment_amount'), self.payment.payment_amount
         )
 
     def test_payment_create(self):
-        url = reverse('users:create')
+        url = reverse('users:payment_course', args=(self.course.pk,))
         data = {
             'user': self.user.pk,
-            'amount': 200,
-            'method': 'Перевод'
+            'payment_amount': 200,
+            'payment_method': 'Перевод'
         }
         response = self.client.post(url, data)
         self.assertEqual(
@@ -168,18 +169,20 @@ class PaymentTestCase(APITestCase):
         )
 
     def test_payment_list(self):
-        url = reverse('users:list')
+        url = reverse('users:payment_list')
         response = self.client.get(url)
         data = response.json()
         result = [
             {
                 "id": self.payment.pk,
-                "date": localtime(self.payment.payment_date).isoformat(),
-                "amount": self.payment.payment_amount,
-                "method": self.payment.payment_method,
-                "user": 12,
-                "course": [],
-                'lesson': [],
+                "payment_date": localtime(self.payment.payment_date).isoformat(),
+                "payment_amount": self.payment.payment_amount,
+                "payment_method": self.payment.payment_method,
+                "session_id": None,
+                "url": None,
+                "user": 1,
+                "payment_course": [],
+                'payment_lesson': [],
 
             }
         ]

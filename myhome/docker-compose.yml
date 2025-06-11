@@ -1,17 +1,25 @@
-                services:
+services:
   web:
-    build: .
-    command: sh -c 'poetry run python manage.py migrate && poetry run python manage.py runserver 0.0.0.0:8000'
-    volumes:
-      - .:/code
+    image: ontarasoff/lms_systems:latest
+    command: sh -c 'poetry run python manage.py migrate && poetry run gunicorn config.wsgi:application --bind 0.0.0.0:8000'
     ports:
       - '8000:8000'
     depends_on:
       - db
+      - redis
       - celery
       - celery-beat
     env_file:
-      - .env
+      - ./.env
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/default.conf
+    ports:
+      - '80:80'
+    depends_on:
+      - web
 
   db:
     image: postgres:16.0
@@ -26,7 +34,7 @@
       retries: 5
 
   celery:
-    build: .
+    image: ontarasoff/lms_systems:latest
     command: poetry run celery -A config worker -l INFO
     depends_on:
       - redis
@@ -34,7 +42,7 @@
       - ./.env
 
   celery-beat:
-    build: .
+    image: ontarasoff/lms_systems:latest
     command: poetry run celery -A config beat -l INFO
     depends_on:
       - redis
@@ -42,6 +50,8 @@
 
   redis:
     image: redis:latest
+    volumes:
+      - redis_data:/data
     healthcheck:
       test: [ "CMD", "redis-cli", "ping" ]
       interval: 10s
@@ -51,3 +61,4 @@
 
 volumes:
   postgres_data:
+  redis_data:
