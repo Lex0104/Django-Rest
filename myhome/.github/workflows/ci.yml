@@ -3,7 +3,7 @@ name: Practice CI
 on:
   push:
     branches:
-      - features_35_2
+      - feature_35_2
 
 jobs:
   test:
@@ -110,8 +110,8 @@ jobs:
           envkey_POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
           envkey_DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
           envkey_STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
-          envkey_CELERY_BROKER_URL: ${{ secrets.CELERY_BROKER_URL_FOR_TEST }}
-          envkey_CELERY_RESULT_BACKEND: ${{ secrets.CELERY_RESULT_BACKEND_FOR_TEST }}
+          envkey_CELERY_BROKER_URL: ${{ secrets.CELERY_BROKER_URL }}
+          envkey_CELERY_RESULT_BACKEND: ${{ secrets.CELERY_RESULT_BACKEND }}
           envkey_EMAIL_HOST: ${{ secrets.EMAIL_HOST }}
           envkey_EMAIL_PORT: ${{ secrets.EMAIL_PORT }}
           envkey_EMAIL_USE_TLS: ${{ secrets.EMAIL_USE_TLS }}
@@ -123,9 +123,11 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} "mkdir -p /lms_systems" || false
           scp -o StrictHostKeyChecking=no docker-compose.yml ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}:/lms_systems
+          scp -o StrictHostKeyChecking=no nginx.conf ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}:/lms_systems
           scp -o StrictHostKeyChecking=no .env ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}:/lms_systems
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} << EOF
           cd /lms_systems
           docker-compose pull
-          docker-compose up -d
+          docker-compose down --remove-orphans || true
+          docker-compose up -d --force-recreate
           EOF

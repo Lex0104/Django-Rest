@@ -156,3 +156,7 @@ cython_debug/
 .idea/
 
 sqlite/
+
+celerybeat-schedule.bak
+celerybeat-schedule.dat
+celerybeat-schedule.dir
