@@ -3,7 +3,8 @@ name: Practice CI
 on:
   push:
     branches:
-      - feature_35_2
+      - develop
+      - features_35_2
 
 jobs:
   test:
