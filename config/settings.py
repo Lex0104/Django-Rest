@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os
 from pathlib import Path
 
-import timedelta
+from datetime import timedelta
 from environs import Env
 
 env = Env()
