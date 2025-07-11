@@ -107,21 +107,21 @@ jobs:
       - name: Create .env file
         uses: SpicyPizza/create-envfile@v2
         with:
-          envkey_SECRET_KEY: ${{ secrets.SECRET_KEY }}
-          envkey_POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
-          envkey_POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
-          envkey_POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
-          envkey_DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
-          envkey_STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
-          envkey_CELERY_BROKER: ${{ secrets.CELERY_BROKER }}
-          envkey_CELERY_BROKER_URL: ${{ secrets.CELERY_BROKER_URL }}
-          envkey_CELERY_RESULT_BACKEND: ${{ secrets.CELERY_RESULT_BACKEND }}
-          envkey_EMAIL_HOST: ${{ secrets.EMAIL_HOST }}
-          envkey_EMAIL_PORT: ${{ secrets.EMAIL_PORT }}
-          envkey_EMAIL_USE_TLS: ${{ secrets.EMAIL_USE_TLS }}
-          envkey_EMAIL_USE_SSL: ${{ secrets.EMAIL_USE_SSL }}
-          envkey_EMAIL_HOST_USER: ${{ secrets.EMAIL_HOST_USER }}
-          envkey_EMAIL_HOST_PASSWORD: ${{ secrets.EMAIL_HOST_PASSWORD }}
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+          CELERY_BROKER: ${{ secrets.CELERY_BROKER }}
+          CELERY_BROKER_URL: ${{ secrets.CELERY_BROKER_URL }}
+          CELERY_RESULT_BACKEND: ${{ secrets.CELERY_RESULT_BACKEND }}
+          EMAIL_HOST: ${{ secrets.EMAIL_HOST }}
+          EMAIL_PORT: ${{ secrets.EMAIL_PORT }}
+          EMAIL_USE_TLS: ${{ secrets.EMAIL_USE_TLS }}
+          EMAIL_USE_SSL: ${{ secrets.EMAIL_USE_SSL }}
+          EMAIL_HOST_USER: ${{ secrets.EMAIL_HOST_USER }}
+          EMAIL_HOST_PASSWORD: ${{ secrets.EMAIL_HOST_PASSWORD }}
 
       - name: Deploy to server
         run: |
