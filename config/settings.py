@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'users',
     'materials',
     'django_filters',
-    'drf_yasg'
+    'drf_yasg',
     'stripe'
 ]
 
