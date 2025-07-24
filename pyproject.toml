@@ -23,7 +23,8 @@ dependencies = [
     "requests (>=2.32.3,<3.0.0)",
     "celery (>=5.5.2,<6.0.0)",
     "environs (>=14.2.0,<15.0.0)",
-    "stripe (>=12.3.0,<13.0.0)"
+    "stripe (>=12.3.0,<13.0.0)",
+    "pytest-django (>=4.11.1,<5.0.0)"
 ]
 
 
@@ -35,4 +36,5 @@ build-backend = "poetry.core.masonry.api"
 flake8 = "^7.2.0"
 isort = "^6.0.1"
 black = "^25.1.0"
+
 

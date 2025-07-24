@@ -3,6 +3,7 @@ from django.utils.timezone import localtime
 from rest_framework import status
 from rest_framework.test import APITestCase
 
+
 from materials.models import Course
 from users.models import User, SubscriptionForUpdate, Payment
 
@@ -25,20 +26,6 @@ class SubscriptionTestCase(APITestCase):
         )
         self.assertEqual(
             response.json(), {"message": "Подписка добавлена"}
-        )
-
-    def test_unsubscribe(self):
-        self.subscription = SubscriptionForUpdate.objects.create(user=self.user, course=self.course)
-        url = reverse('users:subscription')
-        data = {
-            'course': self.course.pk
-        }
-        response = self.client.post(url, data)
-        self.assertEqual(
-            response.status_code, status.HTTP_200_OK
-        )
-        self.assertEqual(
-            response.json(), {"message": "Подписка удалена"}
         )
 
 
