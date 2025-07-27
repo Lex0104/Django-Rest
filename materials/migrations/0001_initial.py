@@ -24,7 +24,7 @@ class Migration(migrations.Migration):
                     ),
                 ),
                 (
-                    "title_course",
+                    'title_course',
                     models.CharField(max_length=150, verbose_name="Название курса"),
                 ),
                 (

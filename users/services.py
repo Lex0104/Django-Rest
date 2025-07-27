@@ -5,9 +5,9 @@ from config.settings import STRIPE_API_KEY
 stripe.api_key = STRIPE_API_KEY
 
 
-def create_stripe_product(course_title):
+def create_stripe_product(course):
 
-    product = stripe.Product.create(name=course_title)
+    product = stripe.Product.create(name=course)
     return product.get('id')
 
 

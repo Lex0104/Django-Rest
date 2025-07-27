@@ -10,7 +10,7 @@ class LessonTestCase(APITestCase):
 
     def setUp(self):
         self.user = User.objects.create(email='fortest@mail.com')
-        self.course = Course.objects.create(title_course='Test Course', description='Test Description', owner=self.user)
+        self.course = Course.objects.create(title='Test Course', description='Test Description', owner=self.user)
         self.lesson = Lesson.objects.create(
             title_lesson='Test Lesson', description='Test description', course=self.course,
             link_to_video='https://www.youtube.com/watch?v=abc123', owner=self.user
@@ -99,7 +99,7 @@ class CourseTestCase(APITestCase):
 
     def setUp(self):
         self.user = User.objects.create(email='fortest@mail.com')
-        self.course = Course.objects.create(title_course='Test Course', description='Test Description', owner=self.user)
+        self.course = Course.objects.create(title='Test Course', description='Test Description', owner=self.user)
         self.client.force_authenticate(user=self.user)
 
     def test_course_retrieve(self):
@@ -116,7 +116,7 @@ class CourseTestCase(APITestCase):
     def test_course_create(self):
         url = reverse('materials:course-list')
         data = {
-            'title_course': 'Test Create',
+            'title': 'Test Create',
             'description': 'Test Create Course',
         }
         response = self.client.post(url, data)
@@ -139,7 +139,7 @@ class CourseTestCase(APITestCase):
                       {
                           'id': self.course.pk,
                           "is_subscribed": False,
-                          'title_course': self.course.title_course,
+                          'title': self.course.title_course,
                           'preview': None,
                           'price': None,
                           'description': self.course.description,
@@ -157,7 +157,7 @@ class CourseTestCase(APITestCase):
     def test_course_update(self):
         url = reverse('materials:course-detail', args=(self.course.pk,))
         data = {
-            'title_course': 'Test Course Update',
+            'title': 'Test Course Update',
             'description': 'Test Create Course',
         }
         response = self.client.patch(url, data)
@@ -166,7 +166,7 @@ class CourseTestCase(APITestCase):
             response.status_code, status.HTTP_200_OK
         )
         self.assertEqual(
-            data.get('title_course'), 'Test Course Update'
+            data.get('title'), 'Test Course Update'
         )
 
     def test_lesson_delete(self):

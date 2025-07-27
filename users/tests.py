@@ -8,11 +8,12 @@ from materials.models import Course
 from users.models import User, SubscriptionForUpdate, Payment
 
 
+
 class SubscriptionTestCase(APITestCase):
 
     def setUp(self):
         self.user = User.objects.create(email='fortest@mail.com')
-        self.course = Course.objects.create(title_course='Test Course', description='Test Description', owner=self.user)
+        self.course = Course.objects.create(title='Test Course', description='Test Description', owner=self.user)
         self.client.force_authenticate(user=self.user)
 
     def test_subscribe(self):
@@ -26,6 +27,20 @@ class SubscriptionTestCase(APITestCase):
         )
         self.assertEqual(
             response.json(), {"message": "Подписка добавлена"}
+        )
+
+    def test_unsubscribe(self):
+        self.subscription = SubscriptionForUpdate.objects.create(user=self.user, course=self.course)
+        url = reverse('users:subscription')
+        data = {
+            'course': self.course.pk
+        }
+        response = self.client.post(url, data)
+        self.assertEqual(
+            response.status_code, status.HTTP_200_OK
+        )
+        self.assertEqual(
+            response.json(), {"message": "Подписка удалена"}
         )
 
 
@@ -128,7 +143,7 @@ class PaymentTestCase(APITestCase):
 
     def setUp(self):
         self.user = User.objects.create(email='fortest@mail.com')
-        self.course = Course.objects.create(title_course='Test', description='Test', price=200, owner=self.user)
+        self.course = Course.objects.create(title='Test', description='Test', price=200, owner=self.user)
         self.payment = Payment.objects.create(user=self.user, payment_amount=100, payment_method='Наличные')
         self.client.force_authenticate(user=self.user)
 

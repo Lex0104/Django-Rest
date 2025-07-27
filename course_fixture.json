@@ -3,7 +3,7 @@
     "model": "materials.course",
     "pk": 2,
     "fields": {
-        "title_course": "Python-разработчик",
+        "title": "Python-разработчик",
         "preview": "",
         "description": "Язык для изучения программирование"
     }
@@ -12,7 +12,7 @@
     "model": "materials.course",
     "pk": 3,
     "fields": {
-        "title_course": "Английского язык",
+        "title": "Английского язык",
         "preview": "",
         "description": "Лучший курс для изучения английского языка"
     }
