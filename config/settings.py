@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     'materials',
     'django_filters',
     'drf_yasg',
-    'stripe'
+    'stripe',
+    'redis'
 ]
 
 MIDDLEWARE = [
