@@ -155,7 +155,7 @@ class PaymentTestCase(APITestCase):
             response.status_code, status.HTTP_200_OK
         )
         self.assertEqual(
-            data.get('amount'), self.payment.payment_amount
+            data.get('amount'), self.payment.amount
         )
 
     def test_payment_create(self):
