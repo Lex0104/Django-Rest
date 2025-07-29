@@ -178,8 +178,8 @@ class PaymentTestCase(APITestCase):
             {
                 "id": self.payment.pk,
                 "date": localtime(self.payment.payment_date).isoformat(),
-                "amount": self.payment.payment_amount,
-                "method": self.payment.payment_method,
+                "amount": self.payment.amount,
+                "method": self.payment.method,
                 "session_id": None,
                 "url": None,
                 "user": 1,
