@@ -41,7 +41,6 @@ jobs:
           DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
           STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
           CELERY_BROKER: ${{ secrets.CELERY_BROKER }}
-          CELERY_BROKER_URL: ${{ secrets.CELERY_BROKER_URL_FOR_TEST }}
           CELERY_RESULT_BACKEND: ${{ secrets.CELERY_RESULT_BACKEND_FOR_TEST }}
           EMAIL_HOST: ${{ secrets.EMAIL_HOST }}
           EMAIL_PORT: ${{ secrets.EMAIL_PORT }}
@@ -60,7 +59,6 @@ jobs:
           DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
           STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
           CELERY_BROKER: ${{ secrets.CELERY_BROKER }}
-          CELERY_BROKER_URL: ${{ secrets.CELERY_BROKER_URL_FOR_TEST }}
           CELERY_RESULT_BACKEND: ${{ secrets.CELERY_RESULT_BACKEND_FOR_TEST }}
           EMAIL_HOST: ${{ secrets.EMAIL_HOST }}
           EMAIL_PORT: ${{ secrets.EMAIL_PORT }}
@@ -114,7 +112,6 @@ jobs:
           DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
           STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
           CELERY_BROKER: ${{ secrets.CELERY_BROKER }}
-          CELERY_BROKER_URL: ${{ secrets.CELERY_BROKER_URL }}
           CELERY_RESULT_BACKEND: ${{ secrets.CELERY_RESULT_BACKEND }}
           EMAIL_HOST: ${{ secrets.EMAIL_HOST }}
           EMAIL_PORT: ${{ secrets.EMAIL_PORT }}
