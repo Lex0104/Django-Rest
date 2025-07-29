@@ -59,7 +59,7 @@ class PaymentCreateAPIVew(CreateAPIView):
         course = Course.objects.get(id=course_id)
         course = course.title_course
         course_price = course.price
-        payment = serializer.save(user=self.request.user, payment_amount=course_price)
+        payment = serializer.save(user=self.request.user, amount=course_price)
         payment.payment_course.add(course)
         stripe_product_id = create_stripe_product(course)
         stripe_price = create_stripe_price(course_price, stripe_product_id)
