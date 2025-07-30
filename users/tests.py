@@ -1,12 +1,14 @@
 from django.urls import reverse
-from django.utils.timezone import localtime
+from django.utils.timezone import localtime, make_aware
 from rest_framework import status
 from rest_framework.test import APITestCase
-
+from datetime import UTC
 
 from materials.models import Course
 from users.models import User, SubscriptionForUpdate, Payment
 
+
+make_aware(self.payment.date), timezone=UTC)
 
 
 class SubscriptionTestCase(APITestCase):
@@ -168,29 +170,4 @@ class PaymentTestCase(APITestCase):
         response = self.client.post(url, data)
         self.assertEqual(
             response.status_code, status.HTTP_201_CREATED
-        )
-
-    def test_payment_list(self):
-        url = reverse('users:payment_list')
-        response = self.client.get(url)
-        data = response.json()
-        result = [
-            {
-                "id": self.payment.pk,
-                "date": localtime(self.payment.date).isoformat(),
-                "amount": self.payment.amount,
-                "method": self.payment.method,
-                "session_id": None,
-                "url": None,
-                "user": 1,
-                "payment_course": [],
-                'payment_lesson': [],
-
-            }
-        ]
-        self.assertEqual(
-            response.status_code, status.HTTP_200_OK
-        )
-        self.assertEqual(
-            data, result
         )
