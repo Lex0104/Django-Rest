@@ -1,0 +1,20 @@
+[
+{
+    "model": "materials.course",
+    "pk": 2,
+    "fields": {
+        "title": "Python-разработчик",
+        "preview": "",
+        "description": "Язык для изучения программирование"
+    }
+},
+{
+    "model": "materials.course",
+    "pk": 3,
+    "fields": {
+        "title": "Английского язык",
+        "preview": "",
+        "description": "Лучший курс для изучения английского языка"
+    }
+}
+]

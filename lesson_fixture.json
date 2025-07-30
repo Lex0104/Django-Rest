@@ -1,0 +1,35 @@
+[
+{
+    "model": "materials.lesson",
+    "pk": 2,
+    "fields": {
+        "lesson": "Знакомство с языком",
+        "preview": "",
+        "description": "Начало программирования на питоне",
+        "course": 2,
+        "link_to_video": "https://linefews.ru"
+    }
+},
+{
+    "model": "materials.lesson",
+    "pk": 3,
+    "fields": {
+        "lesson": "Основы синтаксиса",
+        "preview": "",
+        "description": "Основы синтаксиса при программировании на питоне",
+        "course": 2,
+        "link_to_video": "https://linefews.ru"
+    }
+},
+{
+    "model": "materials.lesson",
+    "pk": 4,
+    "fields": {
+        "lesson": "Первые шаги",
+        "preview": "",
+        "description": "Узнаем начальный уровень ваших знаний",
+        "course": 3,
+        "link_to_video": "https://lms.ru/english/lesson/1/video/"
+    }
+}
+]
