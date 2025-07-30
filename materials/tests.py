@@ -12,7 +12,7 @@ class LessonTestCase(APITestCase):
         self.user = User.objects.create(email='fortest@mail.com')
         self.course = Course.objects.create(title='Test Course', description='Test Description', owner=self.user)
         self.lesson = Lesson.objects.create(
-            title_lesson='Test Lesson', description='Test description', course=self.course,
+            lesson='Test Lesson', description='Test description', course=self.course,
             link_to_video='https://www.youtube.com/watch?v=abc123', owner=self.user
         )
         self.client.force_authenticate(user=self.user)
@@ -25,13 +25,13 @@ class LessonTestCase(APITestCase):
             response.status_code, status.HTTP_200_OK
         )
         self.assertEqual(
-            data.get('title_lesson'), self.lesson.title_lesson
+            data.get('lesson'), self.lesson.title_lesson
         )
 
     def test_lesson_create(self):
         url = reverse('materials:lesson_create')
         data = {
-            'title_lesson': 'Test Create',
+            'lesson': 'Test Create',
             'description': 'Test Create Lesson',
             'link_to_video': 'https://www.youtube.com/'
         }
@@ -51,7 +51,7 @@ class LessonTestCase(APITestCase):
                   'results': [
                       {
                           'id': self.lesson.pk,
-                          'title_lesson': self.lesson.title_lesson,
+                          'lesson': self.lesson.title_lesson,
                           'preview': None,
                           'price': None,
                           'description': self.lesson.description,
@@ -71,7 +71,7 @@ class LessonTestCase(APITestCase):
     def test_lesson_update(self):
         url = reverse('materials:lesson_update', args=(self.lesson.pk,))
         data = {
-            'title_lesson': 'Test Lesson Update',
+            'lesson': 'Test Lesson Update',
             'description': 'Test Create Lesson',
             'link_to_video': 'https://www.youtube.com/'
         }
@@ -81,7 +81,7 @@ class LessonTestCase(APITestCase):
             response.status_code, status.HTTP_200_OK
         )
         self.assertEqual(
-            data.get('title_lesson'), 'Test Lesson Update'
+            data.get('lesson'), 'Test Lesson Update'
         )
 
     def test_lesson_delete(self):
